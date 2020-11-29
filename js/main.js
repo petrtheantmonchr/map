@@ -5,11 +5,15 @@ import TileLayer from 'ol/layer/Tile';
 import View from 'ol/View';
 import ZoomSlider from 'ol/control/ZoomSlider';
 import {defaults as defaultControls} from 'ol/control';
+import {useGeographic} from 'ol/proj';
+
+useGeographic();
+
+const origin = [33.64589280268697, -117.84272984827626];
 
 var view = new View({
-  center: [328627.563458, 5921296.662223],
+  center: origin,
   zoom: 8,
-  extent: [-572513.341856, 5211017.966314, 916327.095083, 6636950.728974],
 });
 
 new Map({
@@ -20,5 +24,5 @@ new Map({
   keyboardEventTarget: document,
   target: 'map',
   view: view,
-  controls: defaultControls().extend([new ZoomSlider()]),
+  controls: defaultControls(),
 });
