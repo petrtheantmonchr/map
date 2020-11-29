@@ -1,35 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <link rel="stylesheet" href="https://cdn.maptiler.com/ol/v6.0.0/ol.css" type="text/css">
-    <script src="https://cdn.maptiler.com/ol/v6.0.0/ol.js"></script>
+    <title>Constrained Extent</title>
+    <!-- Pointer events polyfill for old browsers, see https://caniuse.com/#feat=pointer -->
+    <script src="https://unpkg.com/elm-pep"></script>
     <style>
-      #map {position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
+      .map {
+        width: 100%;
+        height:400px;
+      }
     </style>
   </head>
   <body>
-    <div id="map"></div><p><a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a></p>
-    <script>
-      var source = new ol.source.TileJSON({
-        url: 'https://api.maptiler.com/tiles/satellite/tiles.json?key=BfFUEVfEbY8lOap6pZTK',
-        tileSize: 256,
-        crossOrigin: 'anonymous'
-      });
-
-      var map = new ol.Map({
-        layers: [
-          new ol.layer.Tile({
-            source: source
-          })
-        ],
-        target: 'map',
-        view: new ol.View({
-          constrainResolution: true,
-          center: ol.proj.fromLonLat([0, 0]),
-          zoom: 2
-        })
-      });
-    </script>
+    <div id="map" class="map"></div>
+    <script src="main.js"></script>
   </body>
 </html>
