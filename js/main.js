@@ -1,28 +1,43 @@
-import 'ol/ol.css';
-import Map from 'ol/Map';
-import OSM from 'ol/source/OSM';
-import TileLayer from 'ol/layer/Tile';
-import View from 'ol/View';
-import ZoomSlider from 'ol/control/ZoomSlider';
-import {defaults as defaultControls} from 'ol/control';
-import {useGeographic} from 'ol/proj';
+const step = 60;
 
-useGeographic();
+function init() {
+	map = createMap();
+	minimap = createMinimap();
+	localPlayer = createPlayer();
+	mapView = map.getView();
+	minimapView = minimap.getView();
+}
 
-const origin = [33.64589280268697, -117.84272984827626];
+function mainLoop() {
+	moveLocalPlayer();
+	playerUpdateGlobal();
+	mapView.animate(
+		{
+		center: ol.proj.fromLonLat([localPlayer.x, localPlayer.y]),
+		duration: step,
+		easing: ol.easing.linear
+		},
+	);
+	minimapView.animate(
+		{
+		center: ol.proj.fromLonLat([localPlayer.x, localPlayer.y]),
+		duration: step,
+		easing: ol.easing.linear
+		},
+	);
+	//debugTime();
+}
 
-var view = new View({
-  center: origin,
-  zoom: 8,
-});
+document.addEventListener("keydown", keyPress);
+document.addEventListener("keyup", keyRelease);
+document.addEventListener('DOMContentLoaded', init);
 
-new Map({
-  layers: [
-    new TileLayer({
-      source: new OSM(),
-    }) ],
-  keyboardEventTarget: document,
-  target: 'map',
-  view: view,
-  controls: defaultControls(),
-});
+
+async function connectClient() {
+	await masterClient.connect();
+	initData();
+	createPlayer();
+}
+
+connectClient();
+setInterval(mainLoop, step);
