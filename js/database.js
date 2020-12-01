@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const objectId = require("mongodb").ObjectId;
-const uri = "mongodb+srv://samuelandrewbondoc:2muchf00d%24tufF@petrmap.mxjwj.mongodb.net/players?retryWrites=true&w=majority";
+const uri = "mongodb+srv://samuelandrewbondoc:<password>@petrmap.mxjwj.mongodb.net/players?retryWrites=true&w=majority";
 const masterClient = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true});
 
 
