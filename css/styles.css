@@ -1,0 +1,59 @@
+#minimap {
+  width: 256px;
+  height: 256px;
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  background-color: #FFFFFF;
+}
+
+#pingAnchor {
+  width: 2px;
+  height: 2px;
+  position: absolute;
+  bottom: 136px;
+  left: 136px;
+}
+
+#ping {
+  width: 32;
+  height: 32px;
+  position: absolute;
+  top: -16px;
+  left: -16px;
+}
+
+#petrAnchor {
+  width: 2px;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+#petr {
+  width: 128;
+  height: 128px;
+  position: absolute;
+  top: -64px;
+  left: -64px;
+}
+
+#location {
+  width: 128px;
+  height: 128px;
+}
+
+@keyframes runLeft {
+  0%	{transform: rotate(0deg);}
+  25%	{transform: rotate(-10deg);}
+  75%	{transform: rotate(10deg);}
+  100%	{transform: rotate(0deg);}
+}
+
+@keyframes runRight {
+  0%	{transform: rotate(0deg) scaleX(-1);}
+  25%	{transform: rotate(-10deg) scaleX(-1);}
+  75%	{transform: rotate(10deg) scaleX(-1);}
+  100%	{transform: rotate(0deg) scaleX(-1);}
+}
